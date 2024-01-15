@@ -4,7 +4,7 @@ from sys import path
 path.append(os.path.dirname(__file__)+"/../")
 print(path)
 import argparse
-from pcap_gen_tool import *
+from pcap_generation import *
 from helpers import xor
 
 

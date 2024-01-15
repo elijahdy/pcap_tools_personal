@@ -90,7 +90,10 @@ class EthernetHeader(Layer2Header):
         else:
             self.content: Packet = Ether(src=self.params['srcMAC'][self.currentIndex],
                                             dst=self.params['dstMAC'][self.currentIndex])
-        
+    
+    def __str__(self) -> str:
+        return "Ethernet"
+    
     def nextHeader(self):
         super().nextHeader()
         if self.params['type'] != None:
@@ -108,7 +111,10 @@ class VLANHeader(Layer2Header):
         super().__init__(**headerParams)
         for key in self.params.keys():
             if key != 'pcp' and key != 'vid':
-                raise ValueError("Invalid VLAN Parameters")    
+                raise ValueError("Invalid VLAN Parameters")   
+
+    def __str__(self) -> str:
+        return "VLAN" 
 
 class VLANHeaderSingle(VLANHeader):
     """A single tagged VLAN header."""
@@ -172,6 +178,9 @@ class MPLSHeader(Layer2Header):
                             cos=self.params["qos"][self.currentIndex],
                             ttl=self.params["ttl"][self.currentIndex])
     
+    def __str__(self) -> str:
+            return "MPLS"
+
     def nextHeader(self):
         super().nextHeader()
         self.content = MPLS(label=self.params["label"][self.currentIndex%len(self.params["label"])],
@@ -205,6 +214,9 @@ class Ipv4Header(Layer3Header):
         else:
             self.content: Packet = IP(src=self.params['srcIP'][self.currentIndex],
                                    dst=self.params['dstIP'][self.currentIndex])
+    
+    def __str__(self) -> str:
+        return "IPv4"
     
     def nextHeader(self):
         super().nextHeader()
@@ -245,6 +257,9 @@ class Ipv6Header(Layer3Header):
             self.content: Packet = IPv6(src=self.params['srcIP'][self.currentIndex],
                                    dst=self.params['dstIP'][self.currentIndex])
     
+    def __str__(self) -> str:
+        return "IPv6"
+    
     def nextHeader(self):
         super().nextHeader()
         if self.params['protocol'] != None:
@@ -267,7 +282,7 @@ class GTPHeader(Layer4Header):
             if key != 'messageType' and key != 'teid':
                 raise ValueError("Invalid GTP parameters")
         if (any(mt < 0 or mt > 255 for mt in self.params['messageType']) or
-            any([teid < 0 or teid >= 2**32 for teid in self.params['teid']])):
+            any([teid < 0 or teid > 2**32-1 for teid in self.params['teid']])):
             raise ValueError("Invalid GTP parameters")
 
 class GTPv1Header(GTPHeader):
@@ -276,6 +291,9 @@ class GTPv1Header(GTPHeader):
         super().__init__(**headerParams)
         self.content = GTPv1(gtp_type=self.params["messageType"][self.currentIndex],
                               teid=self.params["teid"][self.currentIndex])
+    
+    def __str__(self) -> str:
+        return "GTPv1"
     
     def nextHeader(self):
         super().nextHeader()
@@ -290,6 +308,9 @@ class GTPv2Header(GTPHeader):
         super().__init__(**headerParams)
         self.content = GTPv2(gtp_type=self.params["messageType"][self.currentIndex],
                               teid=self.params["teid"][self.currentIndex])
+    
+    def __str__(self) -> str:
+        return "GTPv2"
     
     def nextHeader(self):
         super().nextHeader()
@@ -322,6 +343,9 @@ class TCPHeader(TransportHeader):
         self.content: Packet = TCP(sport=self.params['srcPort'][self.currentIndex],
                                    dport=self.params['dstPort'][self.currentIndex])
     
+    def __str__(self) -> str:
+        return "TCP"
+    
     def nextHeader(self):
         super().nextHeader()
         self.content: Packet = TCP(sport=self.params['srcPort'][self.currentIndex%len(self.params['srcPort'])],
@@ -338,6 +362,9 @@ class UDPHeader(TransportHeader):
         super().__init__(**headerParams)
         self.content: Packet = UDP(sport=self.params['srcPort'][self.currentIndex],
                                    dport=self.params['dstPort'][self.currentIndex])
+    
+    def __str__(self) -> str:
+        return "UDP"
     
     def nextHeader(self):
         super().nextHeader()
@@ -364,6 +391,9 @@ class ECPRIHeader(Layer2Header,Layer4Header):
         self.content: Packet = ECPRI(revision=self.params['revision'][self.currentIndex],
                                     c=self.params['c'][self.currentIndex],
                                     messageType=self.params['messageType'][self.currentIndex])
+        
+    def __str__(self) -> str:
+        return "ECPRI"
 
     def nextHeader(self):
         super().nextHeader()
@@ -384,11 +414,14 @@ class RoEHeader(Layer2Header):
                 raise ValueError("Invalid RoE parameters.")
         if (any([st < 0 or st > 255 for st in self.params['subType']]) or
             any([fid < 0 or fid > 255 for fid in self.params['flowID']]) or
-            any([ordinfo < 0 or ordinfo >= 2**32 for ordinfo in self.params['orderingInfo']])):
+            any([ordinfo < 0 or ordinfo > 2**32-1 for ordinfo in self.params['orderingInfo']])):
             raise ValueError("Invalid eCPRI parameters.")
         self.content: Packet = RoE(pckType=self.params['subType'][self.currentIndex],
                                    flowID=self.params['flowID'][self.currentIndex],
                                    orderingInfo=self.params['orderingInfo'][self.currentIndex])
+    
+    def __str__(self) -> str:
+        return "RoE"
     
     def nextHeader(self):
         super().nextHeader()
@@ -483,6 +516,9 @@ class Layer4(Layer):
             raise ValueError("Invalid layer 4 header list")
         self.headers = headers
     
+    def __str__(self) -> str:
+        return f"headerFrame:{[header for header in self.headers]}"
+    
     @classmethod
     def default(cls):
         """create default layer 4 i.e. tcp()"""
@@ -519,6 +555,12 @@ class HeaderFrame():
         self.headers: list[Header] = []
         for layer in layers:
             self.headers += layer.headers
+    
+    def __str__(self) -> str:
+        name = "|"
+        for header in self.headers:
+            name += f"{header}|"
+        return name
     
     @classmethod
     def autofillFromLayer(cls, layer: Layer):
@@ -608,6 +650,9 @@ class PredefinedPayloadGenerator(PayloadGenerator):
         self.fillAsInt = initialFill if initialFill != None else 0
         self.validateStreamInput()
         self.fill = self.fillAsInt.to_bytes(self.size,'big')
+
+    def __str__(self) -> str:
+        return f"PredefinedPayloadGenerator"
     
     def validateStreamInput(self):
         """check for any invalid configuration combinations or values"""
@@ -700,6 +745,9 @@ class UserPayloadGenerator(PayloadGenerator):
         self.byteStrings = byteStrings
         self.currentIndex = 0 
         self.fill = self.byteStringToFill(byteStrings[0])
+    
+    def __str__(self) -> str:
+        return f"UserPayloadGenerator"
 
     @staticmethod
     def validateByteString(byteString: str):
@@ -926,9 +974,9 @@ class Session():
                     id += 1
         
     
-    def sink(self,fileName: str):
+    def sink(self,filepath: str):
         allPackets = []
         for stream in self.streams:
             for packet in stream.packets:
                 allPackets.append(packet.content)
-        wrpcap(fileName+".pcap",allPackets)
+        wrpcap(filepath+".pcap",allPackets)
