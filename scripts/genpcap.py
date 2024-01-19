@@ -27,7 +27,7 @@ def parse_arguments():
                         required=False,
                         nargs='+')
     #arguments for ethernet header
-    parser.add_argument('-secondsrc','--macSource',
+    parser.add_argument('-msrc','--macSource',
                         type=str,
                         help="Specify one or more source MAC address\n e.g. -secondsrc aa:bb:cc:dd:ee:ff",
                         required=False,

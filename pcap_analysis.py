@@ -19,12 +19,13 @@ class TrafficAnalyser():
                 self.totalBytes = sum(self.packetByteSizes)
                 self.times = [float(packet.time) for packet in self.packets]
                 self.totalTime = float(self.packets[len(self.packets)-1].time) - float(self.packets[0].time)
-                self.packetRate = self.totalPackets/self.totalTime
-                self.byteRate = self.totalBytes/self.totalTime
-                ipgTotal = 0
-                for i in range(1,len(self.times)):
-                        ipgTotal += self.times[i] - self.times[i-1]
-                self.meanIpg = ipgTotal / (len(self.times)-1)
+                if self.totalPackets > 1:
+                        self.packetRate = self.totalPackets/self.totalTime
+                        self.byteRate = self.totalBytes/self.totalTime
+                        ipgTotal = 0
+                        for i in range(1,len(self.times)):
+                                ipgTotal += self.times[i] - self.times[i-1]
+                        self.meanIpg = ipgTotal / (len(self.times)-1)
                 self.sortPacketsByProtocol()
                 self.packetTypeCounts = {}
                 for key in self.packetsByProtocol.keys():
@@ -89,15 +90,16 @@ class TrafficAnalyser():
                 print("Number of Packets:",self.totalPackets)
                 print("Number Of Bytes:",self.totalBytes)
                 print("Total Time (s):",self.totalTime)
-                print("Mean Packet Rate (packets/s):",self.packetRate)
-                print("Mean Byte Rate (bytes/s):",self.byteRate)
-                print("Mean inter-packet gap (s):",self.meanIpg)
                 print("-----Packet_Counts_by_Protocol-----")
                 print(self.packetTypeCounts)
-                print("-----Packet_Arrival_Times_(s)-----")
-                for time in self.times:
-                        print(time)
-                print("---------------------------------------")
+                if self.totalPackets > 1:
+                        print("Mean Packet Rate (packets/s):",self.packetRate)
+                        print("Mean Byte Rate (bytes/s):",self.byteRate)
+                        print("Mean inter-packet gap (s):",self.meanIpg)
+                        print("-----Packet_Arrival_Times_(s)-----")
+                        for time in self.times:
+                                print(time)
+                        print("---------------------------------------")
         
         def getPacketBytes(self, packetIndex: int) -> bytes:
                 packet = self.packets[packetIndex]

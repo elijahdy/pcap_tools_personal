@@ -1,0 +1,5 @@
+2024-01-18 13:30:26 [INFO] - Log file created at /home/elijah/pcap_tools_personal/tests/performance_tests/test_files/performanceTest.log
+2024-01-18 13:30:26 [INFO] - Executing pcap generation and analysis runtime test
+2024-01-18 13:31:10 [INFO] - pcap generated in 43.899036169052124(s)
+2024-01-18 13:31:18 [INFO] - pcap analysed in 8.146673202514648(s)
+2024-01-18 13:31:18 [INFO] - Test Passed runtime:52.04570937156677(s)

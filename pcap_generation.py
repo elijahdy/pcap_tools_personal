@@ -861,6 +861,8 @@ class PktCountBasedPktRateStream(Stream):
                 numPackets: int=100, timeOffset: float=0):
         if numPackets < 1:
             raise ValueError("stream must have at least one packet")
+        if packetsPerSecond <= 0:
+            raise ValueError("packet rate must be > 0")
         packets: list[StreamPacket] = []
         ipg = 1/packetsPerSecond
         timeStamp = timeOffset
@@ -880,6 +882,8 @@ class TimeBasedPktRateStream(Stream):
                 totalStreamTime: int=10000, timeOffset: float=0):
         if totalStreamTime < 0:
             raise ValueError("totalStreamTime must be >= 0")
+        if packetsPerSecond <= 0:
+            raise ValueError("packet rate must be > 0")
         packets: list[StreamPacket] = []
         timeStamp = timeOffset
         ipg = 1/packetsPerSecond    
@@ -910,6 +914,8 @@ class ByteCountBasedByteRateStream(Stream):
         newPacket =  StreamPacket(headerFrame,payload.fill)
         if numBytes < newPacket.size:
             raise ValueError("numBytes must be at least the large enough to hold the first packet.")
+        if bytesPerSecond <= 0:
+            raise ValueError("byte rate must be > 0")
         packets: list[StreamPacket] = []
         byteGap = 1/bytesPerSecond
         timeStamp = timeOffset
@@ -942,6 +948,8 @@ class TimeBasedByteRateStream(Stream):
                  totalStreamTime: int = 10000, timeOffset: float=0):
         if totalStreamTime < 0:
             raise ValueError("totalStreamTime must be >= 0")
+        if bytesPerSecond <= 0:
+            raise ValueError("byte rate must be > 0")
         newPacket =  StreamPacket(headerFrame,payload.fill)
         packets: list[StreamPacket] = []
         byteGap = 1/bytesPerSecond
@@ -970,7 +978,7 @@ class Session():
         if appenIds:
             for stream in self.streams:
                 for i in range(len(stream.packets)):
-                    stream.packets[i].content["IP"] = stream.packets[i].content / id.to_bytes(4)
+                    stream.packets[i].content["IP"] = stream.packets[i].content / id.to_bytes(4,'big')
                     id += 1
         
     
