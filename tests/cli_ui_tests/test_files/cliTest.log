@@ -1,0 +1,134 @@
+2024-01-25 15:38:20 [INFO] - Log file created at /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/cliTest.log
+2024-01-25 15:38:20 [INFO] - Setting up genpcap cli tool ...
+2024-01-25 15:38:21 [INFO] - Running Test-Case 1
+2024-01-25 15:38:21 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc1 -pt ipv4 -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:21 [INFO] - pcap saved in test_files as tc1.pcap
+2024-01-25 15:38:21 [INFO] - Running Test-Case 2
+2024-01-25 15:38:21 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc2 -pt ipv4 -up 0x0000000000000000 -pr 60 -pkc 10 -tst 123' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:21 [INFO] - Test-case passed
+2024-01-25 15:38:21 [INFO] - Running Test-Case 3
+2024-01-25 15:38:22 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc3 -pt ipv4 -up 0x0000000000000000 -pkc 10 -pr 40 -br 80' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:22 [INFO] - Test-case passed
+2024-01-25 15:38:22 [INFO] - Running Test-Case 4
+2024-01-25 15:38:22 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc4 -pt ipv4 -up 0x0000000000000000 -rfl true -rsz true -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:22 [INFO] - Test-case passed
+2024-01-25 15:38:22 [INFO] - Running Test-Case 5
+2024-01-25 15:38:23 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc5 -pt vlan -vtt double -pcp 1 -vid 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:23 [INFO] - Test-case passed
+2024-01-25 15:38:23 [INFO] - Running Test-Case 6
+2024-01-25 15:38:23 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc6 -hd wawavingwawaba -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:23 [INFO] - Test-case passed
+2024-01-25 15:38:23 [INFO] - Running Test-Case 7
+2024-01-25 15:38:23 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc7 -hd ethernet -vtt single -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:23 [INFO] - Test-case passed
+2024-01-25 15:38:23 [INFO] - Running Test-Case 8
+2024-01-25 15:38:24 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc8 -hd ethernet -mplbl 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:24 [INFO] - Test-case passed
+2024-01-25 15:38:24 [INFO] - Running Test-Case 9
+2024-01-25 15:38:24 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc9 -hd ethernet -v4src 111.12.18.3 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:24 [INFO] - Test-case passed
+2024-01-25 15:38:24 [INFO] - Running Test-Case 10
+2024-01-25 15:38:24 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc10 -hd ethernet -v6src 0000:1111:2222:3333:4444:5555:6666:7777 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:24 [INFO] - Test-case passed
+2024-01-25 15:38:24 [INFO] - Running Test-Case 11
+2024-01-25 15:38:25 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc11 -hd ethernet -gv 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:25 [INFO] - Test-case passed
+2024-01-25 15:38:25 [INFO] - Running Test-Case 12
+2024-01-25 15:38:25 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc12 -hd ethernet -tsrc 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:25 [INFO] - Test-case passed
+2024-01-25 15:38:25 [INFO] - Running Test-Case 13
+2024-01-25 15:38:26 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc13 -hd ethernet -usrc 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:26 [INFO] - Test-case passed
+2024-01-25 15:38:26 [INFO] - Running Test-Case 14
+2024-01-25 15:38:26 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc14 -hd ethernet -erv 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:26 [INFO] - Test-case passed
+2024-01-25 15:38:26 [INFO] - Running Test-Case 15
+2024-01-25 15:38:26 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc15 -hd ethernet -rst 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:26 [INFO] - Test-case passed
+2024-01-25 15:38:26 [INFO] - Running Test-Case 16
+2024-01-25 15:38:27 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc16 -pt wawavingwawaba -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:27 [INFO] - Test-case passed
+2024-01-25 15:38:27 [INFO] - Running Test-Case 17
+2024-01-25 15:38:27 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc17 -pt ipv4 -pcp 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:27 [INFO] - Test-case passed
+2024-01-25 15:38:27 [INFO] - Running Test-Case 18
+2024-01-25 15:38:27 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc18 -pt ipv4 -mpqos 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:27 [INFO] - Test-case passed
+2024-01-25 15:38:27 [INFO] - Running Test-Case 19
+2024-01-25 15:38:28 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc19 -pt ethernet -v4prot 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:28 [INFO] - Test-case passed
+2024-01-25 15:38:28 [INFO] - Running Test-Case 20
+2024-01-25 15:38:28 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc20 -pt ipv4 -v6prot 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:28 [INFO] - Test-case passed
+2024-01-25 15:38:28 [INFO] - Running Test-Case 21
+2024-01-25 15:38:28 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc21 -pt ipv4 -gmt 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:28 [INFO] - Test-case passed
+2024-01-25 15:38:28 [INFO] - Running Test-Case 22
+2024-01-25 15:38:29 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc22 -pt ipv4 -tdst 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:29 [INFO] - Test-case passed
+2024-01-25 15:38:29 [INFO] - Running Test-Case 23
+2024-01-25 15:38:29 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc23 -pt ipv4 -udst 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:29 [INFO] - Test-case passed
+2024-01-25 15:38:29 [INFO] - Running Test-Case 24
+2024-01-25 15:38:30 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc24 -pt ipv4 -ec 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:30 [INFO] - Test-case passed
+2024-01-25 15:38:30 [INFO] - Running Test-Case 25
+2024-01-25 15:38:30 [INFO] - Exception raised as expected:Command 'genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc25 -pt ipv4 -rid 1 -up 0x0000000000000000 -pkc 10 -pr 60' returned non-zero exit status 1. test-case passed
+2024-01-25 15:38:30 [INFO] - Test-case passed
+2024-01-25 15:38:30 [INFO] - Running Test-Case 26
+2024-01-25 15:38:30 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc26 -hd ethernet -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:30 [INFO] - pcap saved in test_files as tc26.pcap
+2024-01-25 15:38:30 [INFO] - Running Test-Case 27
+2024-01-25 15:38:31 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc27 -pt vlan -vtt single -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:31 [INFO] - pcap saved in test_files as tc27.pcap
+2024-01-25 15:38:31 [INFO] - Running Test-Case 28
+2024-01-25 15:38:31 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc28 -hd ethernet vlan -vtt double -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:31 [INFO] - pcap saved in test_files as tc28.pcap
+2024-01-25 15:38:31 [INFO] - Running Test-Case 29
+2024-01-25 15:38:31 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc29 -pt mpls -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:31 [INFO] - pcap saved in test_files as tc29.pcap
+2024-01-25 15:38:31 [INFO] - Running Test-Case 30
+2024-01-25 15:38:32 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc30 -hd ethernet ipv6 -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:32 [INFO] - pcap saved in test_files as tc30.pcap
+2024-01-25 15:38:32 [INFO] - Running Test-Case 31
+2024-01-25 15:38:32 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc31 -pt gtp -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:32 [INFO] - pcap saved in test_files as tc31.pcap
+2024-01-25 15:38:32 [INFO] - Running Test-Case 32
+2024-01-25 15:38:33 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc32 -hd ethernet ipv4 tcp -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:33 [INFO] - pcap saved in test_files as tc32.pcap
+2024-01-25 15:38:33 [INFO] - Running Test-Case 33
+2024-01-25 15:38:33 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc33 -pt udp -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:33 [INFO] - pcap saved in test_files as tc33.pcap
+2024-01-25 15:38:33 [INFO] - Running Test-Case 34
+2024-01-25 15:38:33 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc34 -hd ethernet ecpri -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:33 [INFO] - pcap saved in test_files as tc34.pcap
+2024-01-25 15:38:33 [INFO] - Running Test-Case 35
+2024-01-25 15:38:34 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc35 -pt roe -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:34 [INFO] - pcap saved in test_files as tc35.pcap
+2024-01-25 15:38:34 [INFO] - Running Test-Case 36
+2024-01-25 15:38:34 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc36 -hd ethernet ipv4 udp gtp -gv 1 -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:34 [INFO] - pcap saved in test_files as tc36.pcap
+2024-01-25 15:38:34 [INFO] - Running Test-Case 37
+2024-01-25 15:38:34 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc37 -pt gtp -gv 2 -up 0x0000000000000000 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:34 [INFO] - pcap saved in test_files as tc37.pcap
+2024-01-25 15:38:34 [INFO] - Running Test-Case 38
+2024-01-25 15:38:35 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc38 -pt ipv4 -np -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:35 [INFO] - pcap saved in test_files as tc38.pcap
+2024-01-25 15:38:35 [INFO] - Running Test-Case 39
+2024-01-25 15:38:35 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc39 -pt ipv4 -ifl 33 -isz 8 -flstp -3 -szstp 8 -mnsz 8 -mxsz 128  -szstp 8 -pkc 10 -pr 60', returncode=0)
+2024-01-25 15:38:35 [INFO] - pcap saved in test_files as tc39.pcap
+2024-01-25 15:38:35 [INFO] - Running Test-Case 40
+2024-01-25 15:38:36 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc40 -pt ipv4 -up 0x0000000000000000 -pkc 10 -aipg 18 -ipgr 6', returncode=0)
+2024-01-25 15:38:36 [INFO] - pcap saved in test_files as tc40.pcap
+2024-01-25 15:38:36 [INFO] - Running Test-Case 41
+2024-01-25 15:38:36 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc41 -pt ipv4 -up 0x0000000000000000 -tst 40 -aipg 3 -ipgr 0.5', returncode=0)
+2024-01-25 15:38:36 [INFO] - pcap saved in test_files as tc41.pcap
+2024-01-25 15:38:36 [INFO] - Running Test-Case 42
+2024-01-25 15:38:37 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc42 -pt ipv4 -up 0x0000000000000000 -tst 55 -pr 60', returncode=0)
+2024-01-25 15:38:37 [INFO] - pcap saved in test_files as tc42.pcap
+2024-01-25 15:38:37 [INFO] - Running Test-Case 43
+2024-01-25 15:38:38 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc43 -pt ipv4 -up 0x0000000000000000 -bc 300 -br 75', returncode=0)
+2024-01-25 15:38:38 [INFO] - pcap saved in test_files as tc43.pcap
+2024-01-25 15:38:38 [INFO] - Running Test-Case 44
+2024-01-25 15:38:38 [INFO] - Successfully executed test-case process callCompletedProcess(args='genpcap.py -fn /home/elijah/pcap_tools_personal/tests/cli_ui_tests/test_files/tc44 -pt ipv4 -up 0x0000000000000000 -tst 67 -br 77', returncode=0)
+2024-01-25 15:38:38 [INFO] - pcap saved in test_files as tc44.pcap

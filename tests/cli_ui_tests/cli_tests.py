@@ -12,8 +12,8 @@ class CliTests(unittest.TestCase):
         super().__init__(methodName)
     
     def create_logging_file(self):
-        log_directory = os.path.dirname(__file__)+"/test_logs/"
-        log_file_path = os.path.join(log_directory, "AnalysisTest.log")
+        log_directory = os.path.dirname(__file__)+"/test_files/"
+        log_file_path = os.path.join(log_directory, "cliTest.log")
         if not os.path.exists(log_directory):
             os.makedirs(log_directory)  
         if os.path.exists(log_file_path):
@@ -58,7 +58,7 @@ class CliTests(unittest.TestCase):
                       '-pt wawavingwawaba -up 0x0000000000000000 -pkc 10 -pr 60',
                       '-pt ipv4 -pcp 1 -up 0x0000000000000000 -pkc 10 -pr 60',
                       '-pt ipv4 -mpqos 1 -up 0x0000000000000000 -pkc 10 -pr 60',
-                      '-pt tcp -v4prot 1 -up 0x0000000000000000 -pkc 10 -pr 60',
+                      '-pt ethernet -v4prot 1 -up 0x0000000000000000 -pkc 10 -pr 60',
                       '-pt ipv4 -v6prot 1 -up 0x0000000000000000 -pkc 10 -pr 60',
                       '-pt ipv4 -gmt 1 -up 0x0000000000000000 -pkc 10 -pr 60',
                       '-pt ipv4 -tdst 1 -up 0x0000000000000000 -pkc 10 -pr 60',
@@ -67,7 +67,7 @@ class CliTests(unittest.TestCase):
                       '-pt ipv4 -rid 1 -up 0x0000000000000000 -pkc 10 -pr 60',]
         self.normalCases = ['-hd ethernet -up 0x0000000000000000 -pkc 10 -pr 60',
                             '-pt vlan -vtt single -up 0x0000000000000000 -pkc 10 -pr 60',
-                            '-hd ethernet vlan  -vtt double-up 0x0000000000000000 -pkc 10 -pr 60',
+                            '-hd ethernet vlan -vtt double -up 0x0000000000000000 -pkc 10 -pr 60',
                             '-pt mpls -up 0x0000000000000000 -pkc 10 -pr 60',
                             '-hd ethernet ipv6 -up 0x0000000000000000 -pkc 10 -pr 60',
                             '-pt gtp -up 0x0000000000000000 -pkc 10 -pr 60',
@@ -89,10 +89,10 @@ class CliTests(unittest.TestCase):
     def checkErroneousCommand(self, commandArgs: str, caseNo: int):
         logging.info(f"Running Test-Case {caseNo}")
         try:
-            subprocess.run(f'{self.call}{self.fnPrefix}tc{caseNo} {commandArgs}', shell=True, check=True)
-            logging.error("Invalid cli command did not raise error as expected")
+            completedProcess = subprocess.run(f'{self.call}{self.fnPrefix}tc{caseNo} {commandArgs}', shell=True, check=True)
+            logging.error(f"Invalid cli command did not raise error as expected command returned {completedProcess}")
         except subprocess.CalledProcessError as e:
-            logging.info(f"Error raised as expected:{e} test-case passed")
+            logging.info(f"Exception raised as expected:{e} test-case passed")
             logging.info("Test-case passed")
             
     

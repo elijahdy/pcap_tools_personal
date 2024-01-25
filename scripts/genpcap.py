@@ -273,64 +273,139 @@ def parse_arguments():
 
 def errorCheckArgs(args, frameInput):
     if not xor([args.totalStreamTime != None, args.totalPacketCount != None, args.totalByteCount != None]):
-        raise ValueError("Please specify exactly one metric of stream size \n i.e totalStreamTime, totalPacketCount or totalByteCount")
-    if not xor([args.averageIpg != None and args.ipgRange != None, args.packetRate != None, args.byteRate != None]):
-        raise ValueError("Specify either --ipgRange and --averageIpg, --packetRate or --byteRate")
+        try:
+            raise ValueError("Please specify exactly one metric of stream size \n i.e totalStreamTime, totalPacketCount or totalByteCount")
+        except ValueError:
+            sys.exit(1)
+    if not xor([args.averageIpg != None and args.ipgRange != None, args.packetRate != None, args.byteRate != None]):     
+        try:
+            raise ValueError("Specify either --ipgRange and --averageIpg, --packetRate or --byteRate")
+        except ValueError:
+            sys.exit(1)
     if (args.byteRate != None and args.totalPacketCount != None) or (args.totalByteCount != None and args.packetRate != None):
-        raise ValueError("Please give all stream settings in terseconds of packets or bytes, not a combination of the two")
+        try:
+            raise ValueError("Please give all stream settings in terseconds of packets or bytes, not a combination of the two")
+        except ValueError:
+            sys.exit(1)
     if any([args.initialPayloadFill != None, args.initialPayloadSize != None, 
             args.randomizePayloadFill != None, args.randomizePayloadSize != None,
             args.fillStep != None, args.sizeStep != None, args.minPayloadSize != None,
             args.maxPayloadSize != None]) and args.userPayload != None:
-        raise ValueError("Specify user defined payload(s), or predefined payload options but not both.")
-    if args.vlanTagType == 'double' and (len(args.vlanPcp) % 2 != 0 or len(args.vlanVid) % 2 != 0):
-        raise ValueError("please give even number of pcps and vids for double tagged vlan")
+        try:
+            raise ValueError("Specify user defined payload(s), or predefined payload options but not both.")
+        except ValueError:
+            sys.exit(1)     
+    if args.vlanTagType == 'double' and (args.vlanPcp != None or args.vlanVid != None) and (len(args.vlanPcp) % 2 != 0 or len(args.vlanVid) % 2 != 0):
+        try:
+            raise ValueError("please give even number of pcps and vids for double tagged vlan")
+        except ValueError:
+            sys.exit(1)             
     acceptedHeaders = ['ethernet','vlan','mpls','ecpri','roe','ipv4','ipv6','tcp','udp','gtp']
     if frameInput == 'headers':
         headers = [head.lower() for head in args.headers]
         for header in headers:
             if not header in acceptedHeaders:
-                raise ValueError("invalid header name given")
+                try:
+                    raise ValueError("invalid header name given")
+                except ValueError:
+                    sys.exit(1)     
         if (args.vlanTagType != None or args.vlanPcp != None or args.vlanVid != None) and not 'vlan' in headers:
-            raise ValueError("VLAN configurations were added for a frame with no VLAN header")
-        if (args.mplsLabel != None or args.mplsTtl != None) and not 'mpls' in headers:
-            raise ValueError("MPLS configurations were added for a frame with no MPLS header")
+            try:
+                raise ValueError("VLAN configurations were added for a frame with no VLAN header")
+            except ValueError:
+                sys.exit(1)     
+        if (args.mplsLabel != None or args.mplsTtl != None or args.mplsQos != None) and not 'mpls' in headers:
+            try:
+                raise ValueError("MPLS configurations were added for a frame with no MPLS header")
+            except ValueError:
+                sys.exit(1)  
         if (args.ecpriRevision != None or args.ecpriC != None or args.ecpriMessageType != None) and not 'ecpri' in headers:
-            raise ValueError("eCPRI configurations were added for a frame with no eCPRI header")
+            try:
+                raise ValueError("eCPRI configurations were added for a frame with no eCPRI header")
+            except ValueError:
+                sys.exit(1)  
         if (args.roeSubType != None or args.roeFlowId != None or args.roeOrderingInfo != None) and not 'roe' in headers:
-            raise ValueError("RoE configurations were added for a frame with no RoE header")
-        if (args.ipv4Destination != None or args.ipv4Source != None) and not 'ipv4' in headers:
-            raise ValueError("IPv4 configurations were added for a frame with no IPv4 header")
-        if (args.ipv6Destination != None or args.ipv6Source != None) and not 'ipv6' in headers:
-            raise ValueError("IPv6 configurations were added for a frame with no IPv6 header")
+            try:
+                raise ValueError("RoE configurations were added for a frame with no RoE header")
+            except ValueError:
+                sys.exit(1)  
+        if (args.ipv4Destination != None or args.ipv4Source != None or args.ipv4Protocol != None) and not 'ipv4' in headers:
+            try:
+                raise ValueError("IPv4 configurations were added for a frame with no IPv4 header")
+            except ValueError:
+                sys.exit(1)  
+        if (args.ipv6Destination != None or args.ipv6Source != None or args.ipv6Protocol != None) and not 'ipv6' in headers:
+            try:
+                raise ValueError("IPv6 configurations were added for a frame with no IPv6 header")
+            except ValueError:
+                sys.exit(1)  
         if (args.tcpSourcePort != None or args.tcpDestinationPort != None) and not 'tcp' in headers:
-            raise ValueError("TCP configurations were added for a frame with no TCP header")
+            try:
+                raise ValueError("TCP configurations were added for a frame with no TCP header")
+            except ValueError:
+                sys.exit(1)  
         if (args.udpSourcePort != None or args.udpDestinationPort != None) and not 'udp' in headers:
-            raise ValueError("UDP configurations were added for a frame with no UDP header")
+            try:
+                raise ValueError("UDP configurations were added for a frame with no UDP header")
+            except ValueError:
+                sys.exit(1)  
         if (args.gtpVersion != None or args.gtpMessageType != None or args.gtpTeid != None) and not 'gtp' in headers:
-            raise ValueError("GTP configurations were added for a frame with no GTP header")
+            try:
+                raise ValueError("GTP configurations were added for a frame with no GTP header")
+            except ValueError:
+                sys.exit(1)
     elif frameInput == 'packetType':
         packetType = args.packetType.lower()
         if not packetType in acceptedHeaders:
-            raise ValueError("invalid packetType given")
+            try:
+                raise ValueError("invalid packetType given")
+            except ValueError:
+                sys.exit(1)
         if (args.vlanTagType != None or args.vlanPcp != None or args.vlanVid != None) and packetType != 'vlan':
-            raise ValueError("VLAN configurations were added for a frame with no VLAN header")
-        if (args.mplsLabel != None or args.mplsTtl != None) and packetType != 'mpls':
-            raise ValueError("MPLS configurations were added for a frame with no MPLS header")
+            try:
+                raise ValueError("VLAN configurations were added for a frame with no VLAN header")
+            except ValueError:
+                sys.exit(1)
+        if (args.mplsLabel != None or args.mplsTtl != None or args.mplsQos != None) and packetType != 'mpls':
+            try:
+                raise ValueError("MPLS configurations were added for a frame with no MPLS header")
+            except ValueError:
+                sys.exit(1)
         if (args.ecpriRevision != None or args.ecpriC != None or args.ecpriMessageType != None) and packetType != 'ecpri':
-            raise ValueError("eCPRI configurations were added for a frame with no eCPRI header")
+            try:
+                raise ValueError("eCPRI configurations were added for a frame with no eCPRI header")
+            except ValueError:
+                sys.exit(1)
         if (args.roeSubType != None or args.roeFlowId != None or args.roeOrderingInfo != None) and packetType != 'roe':
-            raise ValueError("RoE configurations were added for a frame with no RoE header")
-        if (args.ipv4Destination != None or args.ipv4Source != None) and packetType != 'ipv4' and packetType != 'udp' and packetType != 'tcp' and packetType != 'gtp':
-            raise ValueError("IPv4 configurations were added for a frame with no IPv4 header")
-        if (args.ipv6Destination != None or args.ipv6Source != None) and packetType != 'ipv6':
-            raise ValueError("IPv6 configurations were added for a frame with no IPv6 header")
+            try:
+                raise ValueError("RoE configurations were added for a frame with no RoE header")
+            except ValueError:
+                sys.exit(1)
+        if (args.ipv4Destination != None or args.ipv4Source != None or args.ipv4Protocol != None) and packetType != 'ipv4' and packetType != 'udp' and packetType != 'tcp' and packetType != 'gtp':
+            try:
+                raise ValueError("IPv4 configurations were added for a frame with no IPv4 header")
+            except ValueError:
+                sys.exit(1)
+        if (args.ipv6Destination != None or args.ipv6Source != None or args.ipv6Protocol != None) and packetType != 'ipv6':
+            try:
+                raise ValueError("IPv6 configurations were added for a frame with no IPv6 header")
+            except ValueError:
+                sys.exit(1)
         if (args.tcpSourcePort != None or args.tcpDestinationPort != None) and packetType != 'tcp':
-            raise ValueError("TCP configurations were added for a frame with no TCP header")
+            try:
+                raise ValueError("TCP configurations were added for a frame with no TCP header")
+            except ValueError:
+                sys.exit(1)
         if (args.udpSourcePort != None or args.udpDestinationPort != None) and packetType != 'udp' and packetType != 'gtp':
-            raise ValueError("UDP configurations were added for a frame with no UDP header")
+            try:
+                raise ValueError("UDP configurations were added for a frame with no UDP header")
+            except ValueError:
+                sys.exit(1)
         if (args.gtpVersion != None or args.gtpMessageType != None or args.gtpTeid != None) and packetType != 'gtp':
-            raise ValueError("GTP configurations were added for a frame with no GTP header")
+            try:
+                raise ValueError("GTP configurations were added for a frame with no GTP header")
+            except ValueError:
+                sys.exit(1)
 
 def createHeader(headerChoice, args):
     header = EthernetHeader()
@@ -407,7 +482,10 @@ def genStream(headerFrame: HeaderFrame, payloadGen: PayloadGenerator, args):
 def run():
     args = parse_arguments()
     if args.packetType == None and args.headers == None or args.packetType != None and args.headers != None:
-        raise ValueError("please specify either packetType or header(s) but not both")
+        try:
+            raise ValueError("please specify either packetType or header(s) but not both")
+        except ValueError:
+            sys.exit(1)
     frameInput = 'headers' if args.headers != None else 'packetType'
     errorCheckArgs(args, frameInput)
     headerFrame = genHeaderFrame(args, frameInput)

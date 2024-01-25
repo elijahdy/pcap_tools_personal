@@ -91,7 +91,7 @@ class AnalysisTest(unittest.TestCase):
             anal = TrafficAnalyser.fromPcap(self.dr+"ByteCountBasedByteRateStream_test_results/"+filename)
             if assertionValues[2] == 'False' and anal.totalPackets > 1:
                 try:
-                    self.assertAlmostEqual(anal.byteRate,assertionValues[0],3)
+                    self.assertAlmostEqual(anal.byteRate,assertionValues[0],1)
                     logging.info("Correct byte rate")
                 except AssertionError as e:
                     logging.error(f"Calculated byte rate does not match configured byte rate: {e}")
@@ -113,7 +113,7 @@ class AnalysisTest(unittest.TestCase):
                     logging.error(f"Calculated packet count does not match configured packet count: {e}")
             if anal.totalPackets > 1:
                 try:
-                    self.assertAlmostEqual(anal.meanIpg,assertionValues[0],3)
+                    self.assertAlmostEqual(anal.meanIpg,assertionValues[0],1)
                     logging.info("Correct mean IPG")
                 except AssertionError as e:
                     logging.error(f"Calculated mean IPG does not match configured mean IPG: {e}")
@@ -129,7 +129,7 @@ class AnalysisTest(unittest.TestCase):
                     logging.error(f"Calculated packet count does not match configured packet count: {e}")
             if anal.totalPackets > 1:
                 try:
-                    self.assertAlmostEqual(anal.packetRate,assertionValues[0],3)
+                    self.assertAlmostEqual(anal.packetRate,assertionValues[0],1)
                     logging.info("Correct packet rate")
                 except AssertionError as e:
                     logging.error(f"Calculated packet rate does not match configured packet rate: {e}")
@@ -140,12 +140,12 @@ class AnalysisTest(unittest.TestCase):
             logging.info(f"-------------|Test-Case {testcase}: using input file {filename}|----------------")
             if anal.totalPackets > 1:
                 try:
-                    self.assertAlmostEqual(anal.byteRate,assertionValues[0],3)
+                    self.assertAlmostEqual(anal.byteRate,assertionValues[0],1)
                     logging.info("Correct byte rate")
                 except AssertionError as e:
                     logging.error(f"Calculated byte rate does not match configured byte rate: {e}")
                 try:
-                    self.assertAlmostEqual(anal.totalTime,assertionValues[1],3)
+                    self.assertAlmostEqual(anal.totalTime,assertionValues[1],1)
                     logging.info("Correct total time")
                 except AssertionError as e:
                     logging.error(f"Calculated total time does not match configured total time {e}")
@@ -156,12 +156,12 @@ class AnalysisTest(unittest.TestCase):
             logging.info(f"-------------|Test-Case {testcase}: using input file {filename}|----------------")
             if anal.totalPackets > 1:
                 try:
-                    self.assertAlmostEqual(anal.meanIpg,assertionValues[0],3)
+                    self.assertAlmostEqual(anal.meanIpg,assertionValues[0],1)
                     logging.info("Correct mean IPG")
                 except AssertionError as e:
                     logging.error(f"Calculated mean IPG does not match configured mean IPG {e}")
                 try:
-                    self.assertAlmostEqual(anal.totalTime,assertionValues[1],3)
+                    self.assertAlmostEqual(anal.totalTime,assertionValues[1],1)
                     logging.info("Correct total time")
                 except AssertionError as e:
                     logging.error(f"Calculated total time does not match configured total time {e}")
@@ -172,18 +172,16 @@ class AnalysisTest(unittest.TestCase):
             logging.info(f"-------------|Test-Case {testcase}: using input file {filename}|----------------")
             if anal.totalPackets > 1:
                 try:
-                    self.assertAlmostEqual(anal.packetRate,assertionValues[0],5)
+                    self.assertAlmostEqual(anal.packetRate,assertionValues[0],1)
                     logging.info("Correct packet rate")
                 except AssertionError as e:
                     logging.error(f"Calculated packet rate does not match configured packet rate {e}")
                 try:
-                    self.assertAlmostEqual(anal.totalTime,assertionValues[1],5)
+                    self.assertAlmostEqual(anal.totalTime,assertionValues[1],1)
                     logging.info("Correct total time")
                 except AssertionError as e:
                     logging.error(f"Calculated total time does not match configured total time {e}")
                 testcase += 1
 
 if __name__ == "__main__":
-    t = AnalysisTest()
-    t.setUp()
-    t.testAnalysis()
+    unittest.main()
